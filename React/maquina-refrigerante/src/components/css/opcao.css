@@ -1,0 +1,47 @@
+.coca , button.coca:link, button.coca:visited, button.coca.active{
+    background-color: black;
+    color: white
+}
+button.coca:hover{
+    opacity: 0.9;
+    color: white;
+}
+
+
+.laranja , button.laranja:link, button.laranja:visited, button.laranja.active{
+    background-color: orange;
+    color: black;
+}
+button.laranja:hover{
+    opacity: 0.9;
+    color: black;
+}
+
+.uva , button.uva:link, button.uva:visited, button.uva.active{
+    background-color: purple;
+    color: white
+}
+button.uva:hover{
+    opacity: 0.9;
+    color: white
+}
+
+.sprite , button.sprite:link, button.sprite:visited, button.sprite.active{
+    background-color: limegreen;
+    color: white;
+}
+button.sprite:hover{
+    color: white;
+    opacity: 0.9;
+}
+
+.kuat , button.kuat:link, button.kuat:visited, button.kuat.active{
+    background-color: darkgreen;
+    color: white
+}
+button.kuat:hover{
+    color: white;
+    opacity: 0.9;
+}
+
+
