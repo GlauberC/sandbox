@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
-import Placar from './Placar'
+import Placar from '../../gerais/Placar'
 import Selecao from './Selecao'
+import {Link} from 'react-router-dom'
 
-export default class Main extends Component{
-    constructor(){
+export default class ParOuImpar extends Component{
+    constructor(props){
         super()
+        this.props = props
         this.state = {
             placarJogador: 0,
             placarAdversario : 0,
@@ -15,12 +17,10 @@ export default class Main extends Component{
             displayBotoes: 1 ,
         }
     }
-
     resolucao = (e) => {
         // par = 0 , impar = 1
         let numeroAdversarioSorteado = Math.floor( Math.random() * 6 )
         this.setState({numeroAdversario : String(numeroAdversarioSorteado)}) 
-        
         let resultado = ( this.state.numeroJogador +  numeroAdversarioSorteado ) % 2 === 0
 
         if( e.target.value === '0') {
@@ -55,7 +55,7 @@ export default class Main extends Component{
     }
 
     getNumeroJogador = ( n ) =>{
-        this.setState({ numeroJogador: n })
+        this.setState({ numeroJogador: Number(n) })
     }
     
     render(){
@@ -67,21 +67,29 @@ export default class Main extends Component{
         (
             <div className = 'row mt-4 offset-1'>
                 <button value = '0' onClick = { this.resolucao } className = 'btn btn-primary col-md-1'>Par</button>
-                <button value = '1' onClick = { this.resolucao } className = 'btn- btn-danger col-md-1'>Impar</button>
+                <button value = '1' onClick = { this.resolucao } className = 'btn- btn-success col-md-1'>Impar</button>
             </div>
         )
 
-        let mensagem = this.state.msg == '' ? '' : <p  className ='offset-4 col-md-3 alert' style = {stylesMsg}>{this.state.msg}</p>
+        let mensagem = this.state.msg === '' ? '' : <p  className ='offset-4 col-md-3 alert' style = {stylesMsg}>{this.state.msg}</p>
         return(
-            <main className = 'container'>
-                <Placar jogador = { this.state.placarJogador } adversario = { this.state.placarAdversario } />
-                <Selecao numero = { this.getNumeroJogador } adversario = { this.state.numeroAdversario }/>
-                {botoes}
-                
-                <div className = 'row mt-4'>
-                    {mensagem}
+            <div>
+                <div className = 'jumbotron'>
+                    <h1>Par ou Impar</h1>
                 </div>
-            </main>
+                <main className = 'container'>
+                    
+                    <Placar jogador = { this.state.placarJogador } adversario = { this.state.placarAdversario } />
+                    <Selecao numero = { this.getNumeroJogador } adversario = { this.state.numeroAdversario }/>
+                    {botoes}
+                    
+                    <div className = 'row mt-4'>
+                        {mensagem}
+                    </div>
+                </main>
+                <Link className = 'btn btn-danger mt-4' to = '/'>Voltar para a seleção de jogos</Link>
+            </div>
         )
     }
+    
 }
